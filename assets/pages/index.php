@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Klantportaal</title>
-    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
 </head>
 <body>
 <div class="main-container">
@@ -14,7 +14,7 @@
     </div>
     <div class="login-container">
         <h2 class="login-title">Log in</h2>
-        <form class="login-form" action="login.php" method="post">
+        <form class="login-form" action="../includes/inlog.php" method="post">
             <div class="input-container">
                 <img
                     loading="lazy"

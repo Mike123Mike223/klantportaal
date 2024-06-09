@@ -1,5 +1,4 @@
 <?php
-
 $host = 'localhost';
 $dbname = 'klantportaal';
 $dbusername = 'root';
@@ -11,11 +10,4 @@ try {
 } catch (PDOException $e) {
     die("Connection failed: " . $e->getMessage());
 }
-
-
-function isAdmin($userId, $pdo) {
-    $stmt = $pdo->prepare("SELECT is_admin FROM users WHERE id = ?");
-    $stmt->execute([$userId]);
-    $result = $stmt->fetch();
-    return (int)$result['is_admin'] === 1;
-}
+?>
