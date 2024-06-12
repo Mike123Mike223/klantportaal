@@ -1,16 +1,18 @@
 <?php
+session_start();
 require_once '../dbinclude/db.php';
 require_once '../templates/header.php';
 
-// Controleer of de gebruiker is ingelogd
-if (!isset($_SESSION['user_id'])) {
+
+if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'user') {
     header('Location: /login.php');
     exit;
 }
 
-// Haal de betaalvoorkeuren op
 $user_id = $_SESSION['user_id'];
-$stmt = $pdo->prepare('SELECT type FROM paymentpreference WHERE user_id = ?');
+
+// Haal de betaalvoorkeuren op
+$stmt = $pdo->prepare('SELECT preference_id, type FROM paymentpreference WHERE user_id = ?');
 $stmt->execute([$user_id]);
 $preference = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -24,17 +26,17 @@ if ($preference && $preference['type'] == 'Automatisch Incasso') {
 
 // Verwerk het formulier
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $type = $_POST['type'];
+    $type = htmlspecialchars($_POST['type'], ENT_QUOTES, 'UTF-8');
 
     // Verwijder bestaande voorkeur en mandaat als er een nieuwe voorkeur wordt gekozen
     $stmt = $pdo->prepare('DELETE FROM paymentpreference WHERE user_id = ?');
     $stmt->execute([$user_id]);
 
     if ($type == 'Automatisch Incasso') {
-        $iban = $_POST['iban'];
-        $date = $_POST['date'];
-        $account_naam = $_POST['account_naam'];
-        $handtekening = $_POST['handtekening'];
+        $iban = htmlspecialchars($_POST['iban'], ENT_QUOTES, 'UTF-8');
+        $date = htmlspecialchars($_POST['date'], ENT_QUOTES, 'UTF-8');
+        $account_naam = htmlspecialchars($_POST['account_naam'], ENT_QUOTES, 'UTF-8');
+        $handtekening = htmlspecialchars($_POST['handtekening'], ENT_QUOTES, 'UTF-8');
 
         // Voeg de betaalvoorkeur en het mandaat toe
         $stmt = $pdo->prepare('INSERT INTO paymentpreference (user_id, type) VALUES (?, ?)');

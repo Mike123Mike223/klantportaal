@@ -26,6 +26,7 @@ body {
     color: #4cb946; 
 }
 
+
 .sidebar-menu {
     width: 100%;
 }
@@ -39,13 +40,13 @@ body {
     margin-bottom: 10px;
     border-radius: 0;
     transition: background 0.3s, border-radius 0.3s;
-    background-color: transparent; 
+    background-color: transparent;
 }
 
 .menu-item:hover {
-    background-color: #4cb946; 
-    color: #fff; 
-    border-radius: 20px; 
+    background-color: #4cb946;
+    color: #fff;
+    border-radius: 20px;
 }
 
 .menu-icon {
@@ -60,21 +61,30 @@ body {
     overflow-y: auto;
     display: flex;
     flex-direction: column;
-    align-items: center; 
-}
-.create-user-section {
-    display: flex;
     align-items: center;
-    margin-bottom: 20px;
-    margin-right: 500px;
 }
 
-.create-user-heading {
+.create-user-section {
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.create-user-button {
     background-color: #4cb946;
-    color: #484646;
-    font-size: 24px;
+    color: #fff;
+    font-size: 16px;
     padding: 10px 20px;
+    border: none;
     border-radius: 20px;
+    cursor: pointer;
+    transition: background 0.3s;
+    margin-left: 400px; 
+}
+
+.create-user-button:hover {
+    background-color: #3a9934;
 }
 
 .user-table-container {
@@ -96,4 +106,48 @@ body {
 .user-table th {
     background-color: #4cb946; 
     color: #fff; 
+}
+
+.user-table .even-row {
+    background-color: #f2f2f2;
+}
+
+.user-table .odd-row {
+    background-color: #ccc;
+}
+
+/* tickets */
+.ticket-container {
+    padding: 20px;
+}
+
+.ticket {
+    border: 1px solid #ccc;
+    padding: 20px;
+    width: 100%;
+    max-width: 600px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    margin-bottom: 20px;
+}
+
+.ticket-header {
+    background-color: #4cb946;
+    color: #fff;
+    padding: 10px;
+    border-radius: 8px 8px 0 0;
+}
+
+.ticket-body {
+    margin-top: 10px;
+}
+
+.ticket-body hr {
+    margin: 15px 0;
+    border: none;
+    border-top: 1px solid #ddd;
+}
+
+.ticket-body p {
+    margin: 10px 0;
 }

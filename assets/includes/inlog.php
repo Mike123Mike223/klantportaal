@@ -7,43 +7,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST['password'];
 
     try {
-        // admin 
-        $stmt = $pdo->prepare("SELECT admin_id as id, naam, wachtwoord, 'admin' as role FROM admin WHERE email = ?");
+        $stmt = $pdo->prepare("SELECT user_id as id, naam, wachtwoord, is_admin FROM user WHERE email = ?");
         $stmt->execute([$email]);
         $user = $stmt->fetch();
 
-        if (!$user) {
-            // gebruiker
-            $stmt = $pdo->prepare("SELECT user_id as id, naam, wachtwoord, 'user' as role FROM user WHERE email = ?");
-            $stmt->execute([$email]);
-            $user = $stmt->fetch();
-        }
-
         if ($user) {
-
-
-
             if ($password == $user['wachtwoord']) {
                 $_SESSION['user_id'] = $user['id'];
-                $_SESSION['role'] = $user['role'];
+                $_SESSION['role'] = $user['is_admin'] ? 'admin' : 'user';
 
-                if ($user['role'] == 'admin') {
+                if ($user['is_admin']) {
                     header("Location: ../pages/adminpagina.php");
                 } else {
-                    header("Location: ../pages/gebruikerpagina.php");
+                    header("Location: ../pages/preferences.php");
                 }
                 exit;
             } else {
-
-                echo "Password verification failed.";
                 $_SESSION['error_message'] = "Incorrecte email of wachtwoord.";
                 header("Location: ../pages/index.php");
                 exit;
             }
         } else {
-
-            echo "No user found with the given email.";
-            $_SESSION['error_message'] = "Incorrecte email of wachtwoord.";
+            $_SESSION['error_message'] = "Geen gebruiker gevonden met het opgegeven e-mailadres.";
             header("Location: ../pages/index.php");
             exit;
         }
@@ -51,3 +36,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "Error: " . $e->getMessage();
     }
 }
+?>
