@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 if ($user['is_admin']) {
                     header("Location: ../pages/adminpagina.php");
                 } else {
-                    header("Location: ../pages/preferences.php");
+                    header("Location: ../pages/products.php");
                 }
                 exit;
             } else {

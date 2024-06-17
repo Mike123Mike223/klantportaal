@@ -7,7 +7,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
 
 include_once '../dbinclude/db.php'; 
 
-$query = $pdo->prepare("SELECT onderwerp, beschrijving, gemaakt_op FROM ticket");
+$query = $pdo->prepare("SELECT ticket_id, onderwerp, beschrijving, gemaakt_op FROM ticket");
 $query->execute();
 $tickets = $query->fetchAll(PDO::FETCH_ASSOC);
 ?>
@@ -26,7 +26,7 @@ $tickets = $query->fetchAll(PDO::FETCH_ASSOC);
         <div class="sidebar-header">Console</div>
         <div class="sidebar-menu">
             <a href="#" class="menu-item" class="menu-icon" alt="Home Icon"> Dashboard</a>
-            <a href="#" class="menu-item" class="menu-icon" alt="User Icon"> Gebruikersbeheer</a>
+            <a href="adminpagina.php" class="menu-item" class="menu-icon" alt="User Icon"> Gebruikersbeheer</a>
             <a href="#" class="menu-item" class="menu-icon" alt="Storage Icon"> Opslagbeheer</a>
             <a href="tickets.php" class="menu-item" class="menu-icon" alt="Ticket Icon"> Tickets</a>
         </div>
@@ -41,7 +41,8 @@ $tickets = $query->fetchAll(PDO::FETCH_ASSOC);
                     <div class="ticket-body">
                         <p><?php echo nl2br(htmlspecialchars($ticket['beschrijving'])); ?></p>
                         <hr>
-                        <p>Created on: <?php echo htmlspecialchars($ticket['gemaakt_op']); ?></p>
+                        <p>Gemaakt op: <?php echo htmlspecialchars($ticket['gemaakt_op']); ?></p>
+                        <a href="ticketdetails.php?ticket_id=<?php echo htmlspecialchars($ticket['ticket_id']); ?>" class="open-ticket-link">Open Ticket</a>
                     </div>
                 </div>
             <?php endforeach; ?>
@@ -50,4 +51,3 @@ $tickets = $query->fetchAll(PDO::FETCH_ASSOC);
 </div>
 </body>
 </html>
-
