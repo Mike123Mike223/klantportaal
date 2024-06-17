@@ -12,10 +12,9 @@
     <a class="navbar-brand" href="/index.php">Klantportaal</a>
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
-            <li class="nav-item"><a class="nav-link" href="/pages/products.php">Producten</a></li>
-            <li class="nav-item"><a class="nav-link" href="/pages/preferences.php">Betaalvoorkeuren</a></li>
-            <li class="nav-item"><a class="nav-link" href="/pages/profile.php">Profiel</a></li>
-            <li class="nav-item"><a class="nav-link" href="/logout.php">Uitloggen</a></li>
+            <li class="nav-item"><a class="nav-link" href="../pages/products.php">Producten</a></li>
+            <li class="nav-item"><a class="nav-link" href="../pages/profile.php">Profiel</a></li>
+            <li class="nav-item"><a class="nav-link" href="../logout.php">Uitloggen</a></li>
         </ul>
     </div>
 </nav>

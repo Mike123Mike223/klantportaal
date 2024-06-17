@@ -1,9 +1,10 @@
 <?php
+session_start();
 require_once '../dbinclude/db.php';
 require_once '../templates/header.php';
 
 // Controleer of de gebruiker is ingelogd
-if (!isset($_SESSION['user_id'])) {
+if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'user') {
     header('Location: /login.php');
     exit;
 }
@@ -24,12 +25,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $stmt = $pdo->prepare('UPDATE user SET naam = ?, bedrijfsnaam = ?, adres = ?, email = ? WHERE user_id = ?');
     $stmt->execute([$naam, $bedrijfsnaam, $adres, $email, $user_id]);
 
-    header('Location: /pages/profile.php');
+    // Zet een succesbericht in de sessie
+    $_SESSION['success_message'] = "Profiel succesvol bijgewerkt.";
+    header('Location: profile.php');
     exit;
 }
 ?>
 
 <h1>Profiel Wijzigen</h1>
+
+<?php
+if (isset($_SESSION['success_message'])) {
+    echo '<div class="alert alert-success" role="alert">' . htmlspecialchars($_SESSION['success_message']) . '</div>';
+    unset($_SESSION['success_message']); // Verwijder het bericht na weergave
+}
+?>
+
 <form action="profile.php" method="post">
     <div class="mb-3">
         <label for="naam" class="form-label">Naam</label>
