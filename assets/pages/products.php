@@ -8,7 +8,6 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.0.0/dist/signature_pad.umd.min.js"></script>
 </head>
 <body>
     <?php
@@ -22,7 +21,7 @@
     }
 
     $user_id = $_SESSION['user_id'];
-    $stmt = $pdo->prepare('SELECT o.order_id, p.product_id, p.naam, p.type, o.status, p.registratie_datum, p.verloop_datum, p.domeinnaam FROM `order` o JOIN product p ON o.product_id = p.product_id WHERE o.user_id = ?');
+    $stmt = $pdo->prepare('SELECT o.order_id, p.product_id, p.naam, p.type, o.status, DATE_FORMAT(p.registratie_datum, "%Y-%m-%d") as registratie_datum, DATE_FORMAT(p.verloop_datum, "%Y-%m-%d") as verloop_datum, p.domeinnaam FROM `order` o JOIN product p ON o.product_id = p.product_id WHERE o.user_id = ?');
     $stmt->execute([$user_id]);
     $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
