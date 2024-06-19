@@ -14,6 +14,7 @@
         <ul class="navbar-nav">
             <li class="nav-item"><a class="nav-link" href="../pages/products.php">Producten</a></li>
             <li class="nav-item"><a class="nav-link" href="../pages/profile.php">Profiel</a></li>
+            <li class="nav-item"><a class="nav-link" href="../pages/ticketdetails.php">Ticket</a></li>
             <li class="nav-item"><a class="nav-link" href="../includes/logout.php">Uitloggen</a></li>
         </ul>
     </div>
