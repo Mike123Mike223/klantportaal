@@ -22,15 +22,18 @@ $users = $query->fetchAll(PDO::FETCH_ASSOC);
 </head>
 <body>
 <div class="dashboard-container">
-    <div class="sidebar">
-        <div class="sidebar-header">Console</div>
-        <div class="sidebar-menu">
-            <a href="#" class="menu-item menu-icon" alt="Home Icon"> Dashboard</a>
-            <a href="#" class="menu-item menu-icon" alt="User Icon"> Gebruikersbeheer</a>
-            <a href="#" class="menu-item menu-icon" alt="Storage Icon"> Opslagbeheer</a>
-            <a href="tickets.php" class="menu-item menu-icon" alt="Ticket Icon"> Tickets</a>
+<div class="sidebar">
+            <div class="sidebar-header">Console</div>
+            <div class="sidebar-menu">
+                <a href="#" class="menu-item"> Dashboard</a>
+                <a href="adminpagina.php" class="menu-item"> Gebruikersbeheer</a>
+                <a href="#" class="menu-item"> Opslagbeheer</a>
+                <a href="tickets.php" class="menu-item"> Tickets</a>
+            </div>
+            <form action="../includes/logout.php" method="post" class="logout-form">
+                <button type="submit" class="logout-button">Uitloggen</button>
+            </form>
         </div>
-    </div>
     <div class="main-content">
         <div class="create-user-section">
             <button class="create-user-button">Gebruikers aanmaken</button>
