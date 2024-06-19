@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['order_id'])) {
 
     if (!$order) {
         $_SESSION['error_message'] = 'U heeft geen toestemming om deze bestelling op te zeggen.';
-        header('Location: /pages/products.php');
+        header('Location: ../pages/products.php');
         exit;
     }
 
@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['order_id'])) {
 
     // Redirect naar de productenpagina met succesmelding
     $_SESSION['success_message'] = 'Uw product is succesvol opgezegd.';
-    header('Location: /pages/products.php');
+    header('Location: ../pages/products.php');
     exit;
 }
 ?>

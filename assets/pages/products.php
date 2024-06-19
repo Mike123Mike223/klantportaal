@@ -8,6 +8,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.0.0/dist/signature_pad.umd.min.js"></script>
 </head>
 <body>
     <?php
@@ -21,7 +22,7 @@
     }
 
     $user_id = $_SESSION['user_id'];
-    $stmt = $pdo->prepare('SELECT o.order_id, p.product_id, p.naam, p.type, o.status, DATE_FORMAT(p.registratie_datum, "%Y-%m-%d") as registratie_datum, DATE_FORMAT(p.verloop_datum, "%Y-%m-%d") as verloop_datum, p.domeinnaam FROM `order` o JOIN product p ON o.product_id = p.product_id WHERE o.user_id = ?');
+    $stmt = $pdo->prepare('SELECT o.order_id, p.product_id, p.naam, p.type, o.status, o.registratie_datum, o.verloop_datum, p.domeinnaam FROM `order` o JOIN product p ON o.product_id = p.product_id WHERE o.user_id = ?');
     $stmt->execute([$user_id]);
     $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -31,6 +32,12 @@
 
     <div class="container">
         <h1>Mijn Producten</h1>
+        <?php if (isset($_SESSION['success_message'])): ?>
+            <div class="alert alert-success">
+                <?= $_SESSION['success_message'] ?>
+                <?php unset($_SESSION['success_message']); ?>
+            </div>
+        <?php endif; ?>
         <table class="table">
             <thead>
                 <tr>
@@ -49,12 +56,12 @@
                         <td><?= htmlspecialchars($product['naam']) ?></td>
                         <td><?= htmlspecialchars($product['type']) ?></td>
                         <td><?= htmlspecialchars($product['status']) ?></td>
-                        <td><?= htmlspecialchars($product['registratie_datum']) ?></td>
-                        <td><?= htmlspecialchars($product['verloop_datum']) ?></td>
+                        <td><?= htmlspecialchars(date('Y-m-d', strtotime($product['registratie_datum']))) ?></td>
+                        <td><?= $product['verloop_datum'] ? htmlspecialchars(date('Y-m-d', strtotime($product['verloop_datum']))) : 'N/A' ?></td>
                         <td><?= htmlspecialchars($product['domeinnaam']) ?></td>
                         <td>
                             <?php if ($product['status'] == 'Actief'): ?>
-                                <form action="/pages/cancel_product.php" method="post">
+                                <form action="../pages/cancel_product.php" method="post">
                                     <input type="hidden" name="order_id" value="<?= $product['order_id'] ?>">
                                     <button type="submit" class="btn btn-danger btn-sm">Opzeggen</button>
                                 </form>
@@ -78,7 +85,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form id="requestForm" action="/pages/request_product.php" method="post">
+                    <form id="requestForm" action="../pages/request_product.php" method="post">
                         <div class="form-group">
                             <label for="product_id">Kies een product</label>
                             <select class="form-control" id="product_id" name="product_id" required>
