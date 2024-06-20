@@ -14,23 +14,21 @@ $tickets = $query->fetchAll(PDO::FETCH_ASSOC);
 
 <!DOCTYPE html>
 <html lang="nl">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tickets</title>
     <link href="../css/admin.css" rel="stylesheet">
 </head>
-
 <body>
     <div class="dashboard-container">
-    <div class="sidebar">
+        <div class="sidebar">
             <div class="sidebar-header">Console</div>
             <div class="sidebar-menu">
-                <a href="#" class="menu-item"> Dashboard</a>
-                <a href="adminpagina.php" class="menu-item"> Gebruikersbeheer</a>
-                <a href="#" class="menu-item"> Opslagbeheer</a>
-                <a href="tickets.php" class="menu-item"> Tickets</a>
+                <a href="#" class="menu-item">Dashboard</a>
+                <a href="adminpagina.php" class="menu-item">Gebruikersbeheer</a>
+                <a href="#" class="menu-item">Opslagbeheer</a>
+                <a href="tickets.php" class="menu-item">Tickets</a>
             </div>
             <form action="../includes/logout.php" method="post" class="logout-form">
                 <button type="submit" class="logout-button">Uitloggen</button>
@@ -48,7 +46,11 @@ $tickets = $query->fetchAll(PDO::FETCH_ASSOC);
                             <p><?php echo nl2br(htmlspecialchars($ticket['beschrijving'])); ?></p>
                             <hr>
                             <p>Gemaakt op: <?php echo htmlspecialchars($ticket['gemaakt_op']); ?></p>
-                            <a href="ticketdetails.php?ticket_id=<?php echo htmlspecialchars($ticket['ticket_id']); ?>" class="open-ticket-link">Open Ticket</a>
+                            <?php if ($_SESSION['role'] === 'admin') : ?>
+                                <a href="ticketdetails_admin.php?ticket_id=<?php echo htmlspecialchars($ticket['ticket_id']); ?>" class="open-ticket-link">Open Ticket</a>
+                            <?php else : ?>
+                                <a href="ticketdetails_user.php?ticket_id=<?php echo htmlspecialchars($ticket['ticket_id']); ?>" class="open-ticket-link">Open Ticket</a>
+                            <?php endif; ?>
                         </div>
                     </div>
                 <?php endforeach; ?>
@@ -56,5 +58,4 @@ $tickets = $query->fetchAll(PDO::FETCH_ASSOC);
         </div>
     </div>
 </body>
-
 </html>

@@ -1,0 +1,99 @@
+/* Ticket Styles */
+body {
+    font-family: Poppins, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    display: flex;
+    min-height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f0f0;
+}
+
+.container {
+    width: 80%;
+    max-width: 1200px;
+    margin-top: 20px;
+}
+
+.ticket-details {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.ticket-details h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.ticket-details h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.messages {
+    margin-top: 20px;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.message {
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.user-message {
+    background-color: #d1e7dd;
+    align-self: flex-start;
+}
+
+.admin-message {
+    background-color: #f8d7da;
+    align-self: flex-end;
+}
+
+.message p {
+    margin: 0;
+}
+
+/* Formulier */
+.user-response-form,
+.admin-response-form {
+    margin-top: 20px;
+}
+
+.user-response-form h4,
+.admin-response-form h4 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.user-response-form textarea,
+.admin-response-form textarea {
+    width: 100%;
+    min-height: 100px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    resize: vertical;
+}
+
+.user-response-form button,
+.admin-response-form button {
+    margin-top: 10px;
+    background-color: #4cb946;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.user-response-form button:hover,
+.admin-response-form button:hover {
+    background-color: #3a933a;
+}

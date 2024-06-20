@@ -72,6 +72,8 @@
             </tbody>
         </table>
         <button class="btn btn-primary" data-toggle="modal" data-target="#requestProductModal">Product Aanvragen</button>
+     
+        <a href="ticket_aanvragen.php" class="btn btn-secondary">Ticket Aanvragen</a>
     </div>
 
     <!-- Product Aanvragen Modal -->
