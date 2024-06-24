@@ -2,7 +2,6 @@
 session_start();
 require_once '../dbinclude/db.php';
 
-
 if (!isset($_SESSION['user_id'])) {
     header('Location: /login.php');
     exit;
@@ -25,7 +24,11 @@ $tickets = $stmt->fetchAll(PDO::FETCH_ASSOC);
 </head>
 <body>
     <div class="container">
-        <h1>Mijn Tickets</h1>
+        <div class="header">
+            <a href="products.php" class="btn-back">Terug naar Producten</a>
+            <h1>Mijn Tickets</h1>
+        </div>
+
         <?php if (count($tickets) > 0): ?>
             <table class="table">
                 <thead>

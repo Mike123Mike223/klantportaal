@@ -11,16 +11,15 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'user') {
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $onderwerp = $_POST['onderwerp'];
     $beschrijving = $_POST['beschrijving'];
-    // Optioneel: verwerk eventuele bijlage
+  
     
-    // Voeg het ticket toe aan de database
     $insert_query = $pdo->prepare("
         INSERT INTO ticket (user_id, onderwerp, beschrijving, gemaakt_op)
         VALUES (?, ?, ?, NOW())
     ");
     if ($insert_query->execute([$_SESSION['user_id'], $onderwerp, $beschrijving])) {
         $_SESSION['success_message'] = 'Ticket succesvol aangevraagd.';
-        header('Location: mijn_tickets.php'); // Verwijzing naar een overzicht van tickets na aanvraag
+        header('Location: mijntickets.php'); 
         exit;
     } else {
         $_SESSION['error_message'] = 'Er is een fout opgetreden bij het aanvragen van het ticket.';
@@ -54,11 +53,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <label for="beschrijving">Beschrijving</label>
                 <textarea class="form-control" id="beschrijving" name="beschrijving" rows="4" required></textarea>
             </div>
-            <!-- Optioneel: bijlage toevoegen -->
-            <!-- <div class="form-group">
-                <label for="bijlage">Bijlage</label>
-                <input type="file" class="form-control-file" id="bijlage" name="bijlage">
-            </div> -->
+         
+            </div> 
             <button type="submit" class="btn btn-primary">Aanvragen</button>
         </form>
     </div>

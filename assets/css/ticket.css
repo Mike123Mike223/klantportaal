@@ -17,16 +17,34 @@ body {
     margin-top: 20px;
 }
 
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.header a {
+    flex-shrink: 0;
+    background-color: #6c757d;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 8px;
+    text-decoration: none;
+    margin-right: auto;
+}
+
+.header a:hover {
+    background-color: #5a6268;
+}
+
+
+
 .ticket-details {
     background-color: #fff;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.ticket-details h1 {
-    font-size: 24px;
-    margin-bottom: 20px;
 }
 
 .ticket-details h3 {
@@ -60,7 +78,7 @@ body {
     margin: 0;
 }
 
-/* Formulier */
+
 .user-response-form,
 .admin-response-form {
     margin-top: 20px;
