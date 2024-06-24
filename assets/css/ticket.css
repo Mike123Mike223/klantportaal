@@ -38,8 +38,6 @@ body {
     background-color: #5a6268;
 }
 
-
-
 .ticket-details {
     background-color: #fff;
     padding: 20px;
@@ -77,7 +75,6 @@ body {
 .message p {
     margin: 0;
 }
-
 
 .user-response-form,
 .admin-response-form {

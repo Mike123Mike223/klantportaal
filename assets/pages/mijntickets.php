@@ -20,13 +20,12 @@ $tickets = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mijn Tickets</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../css/admin.css" rel="stylesheet">
+    <link href="../css/ticket.css" rel="stylesheet">
 </head>
 <body>
     <div class="container">
         <div class="header">
             <a href="products.php" class="btn-back">Terug naar Producten</a>
-            <h1>Mijn Tickets</h1>
         </div>
 
         <?php if (count($tickets) > 0): ?>
