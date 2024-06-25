@@ -8,12 +8,12 @@ body {
     min-height: 100vh;
 }
 
+
 .dashboard-container {
     display: flex;
     flex-grow: 1;
 }
 
-/* Sidebar styling */
 .sidebar {
     background-color: #e1e2e4;
     color: #4cb946;
@@ -82,7 +82,6 @@ body {
     width: calc(100% - 250px);
 }
 
-
 .create-user-form-container {
     display: flex;
     justify-content: center;
@@ -96,8 +95,8 @@ body {
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 400px;
-    max-width: 100%; 
-    margin: auto; 
+    max-width: 100%;
+    margin: auto;
 }
 
 .create-user-form h2 {
@@ -138,7 +137,6 @@ body {
     background-color: #3a933a;
 }
 
-/* Admin table styling */
 .admin-table-container {
     width: 100%;
     margin-top: 20px;
@@ -202,7 +200,7 @@ body {
     font-weight: bold;
 }
 
-/* Chat styling */
+
 .messages {
     margin-bottom: 20px;
     width: 100%;
@@ -254,6 +252,80 @@ body {
     background-color: #3a933a;
 }
 
+/* Bewerken Gebruiker form styling */
+.edit-user-form {
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    max-width: 100%;
+    margin: 20px auto;
+}
+
+.edit-user-form h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #4cb946;
+}
+
+.edit-user-form label {
+    display: block;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+.edit-user-form input[type="text"],
+.edit-user-form input[type="email"],
+.edit-user-form input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.edit-user-form input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+.edit-user-form button {
+    width: 100%;
+    padding: 10px;
+    background-color: #4cb946;
+    color: white;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.edit-user-form button:hover {
+    background-color: #3a933a;
+}
+
+
+.error-messages {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    width: 400px;
+    max-width: 100%;
+}
+
+.error-messages ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.error-messages li {
+    margin: 5px 0;
+}
+
 /* Media queries */
 @media (max-width: 991px) {
     .sidebar {
@@ -274,7 +346,7 @@ body {
         max-width: 100%;
     }
 
-    .create-user-form {
+    .create-user-form, .edit-user-form {
         width: 90%;
     }
 }

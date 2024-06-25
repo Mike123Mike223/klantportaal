@@ -43,13 +43,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (empty($errors)) {
         try {
             $query = $pdo->prepare("UPDATE `user` SET naam = :naam, email = :email, bedrijfsnaam = :bedrijfsnaam, wachtwoord = :wachtwoord, is_admin = :is_admin WHERE user_id = :user_id");
-            $query->execute([
-                ':naam' => $naam,
-                ':email' => $email,
-                ':bedrijfsnaam' => $bedrijfsnaam,
-                ':wachtwoord' => $wachtwoord,
-                ':is_admin' => $is_admin,
-                ':user_id' => $user_id
+            $query->execute([':naam' => $naam,
+                            ':email' => $email,
+                            ':bedrijfsnaam' => $bedrijfsnaam,
+                            ':wachtwoord' => $wachtwoord,
+                            ':is_admin' => $is_admin,
+                            ':user_id' => $user_id
             ]);
 
             if ($query->rowCount() > 0) {

@@ -28,12 +28,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (empty($errors)) {
         try {
             $query = $pdo->prepare("INSERT INTO `user` (naam, email, bedrijfsnaam, wachtwoord, is_admin) VALUES (:naam, :email, :bedrijfsnaam, :wachtwoord, :is_admin)");
-            $query->execute([
-                ':naam' => $naam,
-                ':email' => $email,
-                ':bedrijfsnaam' => $bedrijfsnaam,
-                ':wachtwoord' => $wachtwoord,
-                ':is_admin' => $is_admin
+            $query->execute([ ':naam' => $naam,
+                              ':email' => $email,
+                              ':bedrijfsnaam' => $bedrijfsnaam,
+                              ':wachtwoord' => $wachtwoord,
+                              ':is_admin' => $is_admin
             ]);
 
             if ($query->rowCount() > 0) {
