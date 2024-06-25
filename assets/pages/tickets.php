@@ -25,7 +25,6 @@ $tickets = $query->fetchAll(PDO::FETCH_ASSOC);
         <div class="sidebar">
             <div class="sidebar-header">Console</div>
             <div class="sidebar-menu">
-                <a href="#" class="menu-item">Dashboard</a>
                 <a href="adminpagina.php" class="menu-item">Gebruikersbeheer</a>
                 <a href="#" class="menu-item">Opslagbeheer</a>
                 <a href="tickets.php" class="menu-item">Tickets</a>
