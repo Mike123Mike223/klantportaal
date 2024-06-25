@@ -35,7 +35,7 @@ $products = $query->fetchAll(PDO::FETCH_ASSOC);
         </div>
         <div class="main-content">
             <div class="create-product-section">
-                <a href="Product-Aanmaken.php" class="create-product-button">Product toevoegen</a>
+                <a href="Product-Aanvragen.php" class="create-product-button">Product toevoegen</a>
             </div>
 
             <div class="admin-table-container">
