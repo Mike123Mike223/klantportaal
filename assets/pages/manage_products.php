@@ -36,8 +36,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['order_id'], $_POST['s
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link href="../css/admin.css" rel="stylesheet">
 </head>
 <body>
+<div class="dashboard-container">
+        <div class="sidebar">
+            <div class="sidebar-header">Console</div>
+            <div class="sidebar-menu">
+                <a href="adminpagina.php" class="menu-item"> Gebruikersbeheer</a>
+                <a href="Product-Beheer.php" class="menu-item"> Opslagbeheer</a>
+                <a href="tickets.php" class="menu-item"> Tickets</a>
+                <a href="manage_products.php" class="menu-item"> Aanvragen</a>
+
+            </div>
+            <form action="../includes/logout.php" method="post" class="logout-form">
+                <button type="submit" class="logout-button">Uitloggen</button>
+            </form>
+        </div>
     <div class="container">
         <h1>Beheer Producten</h1>
         <table class="table">
