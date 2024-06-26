@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $user = $stmt->fetch();
 
         if ($user) {
-            if ($password == $user['wachtwoord']) {
+            if (password_verify($password, $user['wachtwoord'])) {
                 $_SESSION['user_id'] = $user['id'];
                 $_SESSION['role'] = $user['is_admin'] ? 'admin' : 'user';
 

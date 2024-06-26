@@ -35,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="sidebar-header">Console</div>
             <div class="sidebar-menu">
                 <a href="adminpagina.php" class="menu-item">Gebruikersbeheer</a>
-                <a href="opslagbeheer.php" class="menu-item">Opslagbeheer</a>
+                <a href="Product-Beheer.php" class="menu-item">Opslagbeheer</a>
                 <a href="tickets.php" class="menu-item">Tickets</a>
             </div>
             <form action="../includes/logout.php" method="post" class="logout-form">
