@@ -30,13 +30,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 
 <body>
-    <div class="dashboard-container">
+<div class="dashboard-container">
         <div class="sidebar">
             <div class="sidebar-header">Console</div>
             <div class="sidebar-menu">
-                <a href="adminpagina.php" class="menu-item">Gebruikersbeheer</a>
-                <a href="Product-Beheer.php" class="menu-item">Opslagbeheer</a>
-                <a href="tickets.php" class="menu-item">Tickets</a>
+                <a href="adminpagina.php" class="menu-item"> Gebruikersbeheer</a>
+                <a href="Product-Beheer.php" class="menu-item"> Opslagbeheer</a>
+                <a href="tickets.php" class="menu-item"> Tickets</a>
+                <a href="manage_products.php" class="menu-item"> Aanvragen</a>
+
             </div>
             <form action="../includes/logout.php" method="post" class="logout-form">
                 <button type="submit" class="logout-button">Uitloggen</button>
