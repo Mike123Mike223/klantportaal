@@ -8,12 +8,11 @@ if (!isset($_SESSION['user_id'])) {
 require_once '../dbinclude/db.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $product_naam = $_POST['product_naam'];
-    $aantal = $_POST['aantal'];
-    $beschrijving = $_POST['beschrijving'];
+    $product_naam = $_POST['product_naam']; // Aangepaste naam van het formulier veld
 
-    $query = $pdo->prepare("INSERT INTO product (product_naam, aantal, beschrijving, aanmaakdatum) VALUES (?, ?, ?, NOW())");
-    $query->execute([$product_naam, $aantal, $beschrijving]);
+    // Verwijder de 'beschrijving' parameter aangezien deze niet nodig is.
+    $query = $pdo->prepare("INSERT INTO product (naam, registratie_datum) VALUES (?, NOW())");
+    $query->execute([$product_naam]);
 
     $success_message = "Uw productaanvraag is succesvol ingediend.";
 }
@@ -49,7 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <?php if (isset($success_message)): ?>
                 <div class="success-message"><?php echo $success_message; ?></div>
             <?php endif; ?>
-            <form action="Product-Aanvragen.php" method="post" class="product-request-form">
+            <form action="Product-Aanvragen.php" method="post" class="create-user-form">
                 <div class="form-group">
                     <label for="product_naam">Product Naam:</label>
                     <input type="text" id="product_naam" name="product_naam" required>
