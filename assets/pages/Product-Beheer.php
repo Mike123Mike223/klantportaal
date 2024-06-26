@@ -85,16 +85,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'], $_POST['pro
                     foreach ($products as $product) {
                         echo "<tr>
                             <td>{$row_num}</td>
-                            <td>{$product['naam']}</td>
-                            <td>{$product['type']}</td>
-                            <td>{$product['registratie_datum']}</td>
-                            <td>{$product['verloop_datum']}</td>
-                            <td>{$product['domeinnaam']}</td>
-                            <td>{$product['username']}</td>
-                            <td>{$product['status']}</td>
+                            <td>" . htmlspecialchars($product['naam']) . "</td>
+                            <td>" . htmlspecialchars($product['type']) . "</td>
+                            <td>" . htmlspecialchars($product['registratie_datum']) . "</td>
+                            <td>" . htmlspecialchars($product['verloop_datum']) . "</td>
+                            <td>" . htmlspecialchars($product['domeinnaam']) . "</td>
+                            <td>" . htmlspecialchars($product['username']) . "</td>
+                            <td>" . htmlspecialchars($product['status']) . "</td>
                             <td>
                                 <form action='Product-Beheer.php' method='post' style='display:inline;'>
-                                    <input type='hidden' name='product_id' value='{$product['product_id']}'>
+                                    <input type='hidden' name='product_id' value='" . htmlspecialchars($product['product_id']) . "'>
                                     <button type='submit' name='action' value='verlengen' class='btn btn-success btn-sm'>Verlengen</button>
                                     <button type='submit' name='action' value='opzeggen' class='btn btn-warning btn-sm'>Opzeggen</button>
                                     <button type='submit' name='action' value='verwijderen' class='btn btn-danger btn-sm'>Verwijderen</button>
