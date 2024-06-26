@@ -39,58 +39,58 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['order_id'], $_POST['s
     <link href="../css/admin.css" rel="stylesheet">
 </head>
 <body>
-<div class="dashboard-container">
+    <div class="dashboard-container">
         <div class="sidebar">
             <div class="sidebar-header">Console</div>
             <div class="sidebar-menu">
-                <a href="adminpagina.php" class="menu-item"> Gebruikersbeheer</a>
-                <a href="Product-Beheer.php" class="menu-item"> Opslagbeheer</a>
-                <a href="tickets.php" class="menu-item"> Tickets</a>
-                <a href="manage_products.php" class="menu-item"> Aanvragen</a>
-
+                <a href="adminpagina.php" class="menu-item">Gebruikersbeheer</a>
+                <a href="Product-Beheer.php" class="menu-item">Opslagbeheer</a>
+                <a href="tickets.php" class="menu-item">Tickets</a>
+                <a href="manage_products.php" class="menu-item">Aanvragen</a>
             </div>
             <form action="../includes/logout.php" method="post" class="logout-form">
                 <button type="submit" class="logout-button">Uitloggen</button>
             </form>
         </div>
-    <div class="container">
-        <h1>Beheer Producten</h1>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Naam</th>
-                    <th>Type</th>
-                    <th>Status</th>
-                    <th>Registratie Datum</th>
-                    <th>Verloop Datum</th>
-                    <th>Domeinnaam</th>
-                    <th>Acties</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($products as $product): ?>
+        <div class="main-content">
+            <h1>Beheer Producten</h1>
+            <table class="table">
+                <thead>
                     <tr>
-                        <td><?= htmlspecialchars($product['naam']) ?></td>
-                        <td><?= htmlspecialchars($product['type']) ?></td>
-                        <td><?= htmlspecialchars($product['status']) ?></td>
-                        <td><?= htmlspecialchars($product['registratie_datum']) ?></td>
-                        <td><?= htmlspecialchars($product['verloop_datum']) ?></td>
-                        <td><?= htmlspecialchars($product['domeinnaam']) ?></td>
-                        <td>
-                            <form action="manage_products.php" method="post" style="display:inline;">
-                                <input type="hidden" name="order_id" value="<?= $product['order_id'] ?>">
-                                <select name="status" class="form-control" style="display:inline-block; width:auto;">
-                                    <option value="In Behandeling" <?= $product['status'] == 'In Behandeling' ? 'selected' : '' ?>>In Behandeling</option>
-                                    <option value="Actief" <?= $product['status'] == 'Actief' ? 'selected' : '' ?>>Actief</option>
-                                    <option value="Geannuleerd" <?= $product['status'] == 'Geannuleerd' ? 'selected' : '' ?>>Geannuleerd</option>
-                                </select>
-                                <button type="submit" class="btn btn-primary btn-sm">Update</button>
-                            </form>
-                        </td>
+                        <th>Naam</th>
+                        <th>Type</th>
+                        <th>Status</th>
+                        <th>Registratie Datum</th>
+                        <th>Verloop Datum</th>
+                        <th>Domeinnaam</th>
+                        <th>Acties</th>
                     </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    <?php foreach ($products as $product): ?>
+                        <tr>
+                            <td><?= htmlspecialchars($product['naam']) ?></td>
+                            <td><?= htmlspecialchars($product['type']) ?></td>
+                            <td><?= htmlspecialchars($product['status']) ?></td>
+                            <td><?= htmlspecialchars($product['registratie_datum']) ?></td>
+                            <td><?= htmlspecialchars($product['verloop_datum']) ?></td>
+                            <td><?= htmlspecialchars($product['domeinnaam']) ?></td>
+                            <td>
+                                <form action="manage_products.php" method="post" style="display:inline;">
+                                    <input type="hidden" name="order_id" value="<?= $product['order_id'] ?>">
+                                    <select name="status" class="form-control" style="display:inline-block; width:auto;">
+                                        <option value="In Behandeling" <?= $product['status'] == 'In Behandeling' ? 'selected' : '' ?>>In Behandeling</option>
+                                        <option value="Actief" <?= $product['status'] == 'Actief' ? 'selected' : '' ?>>Actief</option>
+                                        <option value="Geannuleerd" <?= $product['status'] == 'Geannuleerd' ? 'selected' : '' ?>>Geannuleerd</option>
+                                    </select>
+                                    <button type="submit" class="btn btn-primary btn-sm">Update</button>
+                                </form>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
     </div>
 </body>
 </html>
