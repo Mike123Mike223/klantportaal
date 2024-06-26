@@ -12,13 +12,22 @@ $stmt = $pdo->prepare('SELECT o.order_id, p.product_id, p.naam, p.type, o.status
 $stmt->execute(['In Behandeling']);
 $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-// Controleer of er een status update is aangevraagd
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['order_id'], $_POST['status'])) {
-    $order_id = $_POST['order_id'];
-    $status = $_POST['status'];
+// Controleer of er een status update of domeinnaam invoer is aangevraagd
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (isset($_POST['order_id'], $_POST['status'])) {
+        $order_id = $_POST['order_id'];
+        $status = $_POST['status'];
 
-    $stmt = $pdo->prepare('UPDATE `order` SET status = ? WHERE order_id = ?');
-    $stmt->execute([$status, $order_id]);
+        $stmt = $pdo->prepare('UPDATE `order` SET status = ? WHERE order_id = ?');
+        $stmt->execute([$status, $order_id]);
+
+    } elseif (isset($_POST['product_id'], $_POST['domeinnaam'])) {
+        $product_id = $_POST['product_id'];
+        $domeinnaam = $_POST['domeinnaam'];
+
+        $stmt = $pdo->prepare('UPDATE product SET domeinnaam = ? WHERE product_id = ?');
+        $stmt->execute([$domeinnaam, $product_id]);
+    }
 
     // Redirect om herladen van de pagina te voorkomen
     header('Location: manage_products.php');
@@ -74,7 +83,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['order_id'], $_POST['s
                             <td><?= htmlspecialchars($product['status']) ?></td>
                             <td><?= htmlspecialchars($product['registratie_datum']) ?></td>
                             <td><?= htmlspecialchars($product['verloop_datum']) ?></td>
-                            <td><?= htmlspecialchars($product['domeinnaam']) ?></td>
+                            <td>
+                                <?php if (empty($product['domeinnaam'])): ?>
+                                    <form action="manage_products.php" method="post" style="display:inline;">
+                                        <input type="hidden" name="product_id" value="<?= $product['product_id'] ?>">
+                                        <input type="text" name="domeinnaam" class="form-control" style="display:inline-block; width:auto;">
+                                        <button type="submit" class="btn btn-primary btn-sm">Opslaan</button>
+                                    </form>
+                                <?php else: ?>
+                                    <?= htmlspecialchars($product['domeinnaam']) ?>
+                                <?php endif; ?>
+                            </td>
                             <td>
                                 <form action="manage_products.php" method="post" style="display:inline;">
                                     <input type="hidden" name="order_id" value="<?= $product['order_id'] ?>">
