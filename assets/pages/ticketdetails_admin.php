@@ -10,14 +10,14 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
 
 $admin_id = $_SESSION['user_id'];
 
-
+// Controleer of ticket_id geldig is
 if (!isset($_GET['ticket_id']) || !is_numeric($_GET['ticket_id'])) {
     die('Ongeldige ticket ID.');
 }
 
 $ticket_id = $_GET['ticket_id'];
 
-
+// Haal ticketgegevens op
 $stmt = $pdo->prepare('SELECT * FROM ticket WHERE ticket_id = ?');
 $stmt->execute([$ticket_id]);
 $ticket = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -26,7 +26,7 @@ if (!$ticket) {
     die('Ticket bestaat niet.');
 }
 
-// Haal alle berichten op voor ticket op 
+// Haal alle berichten voor het ticket op
 $stmt = $pdo->prepare('
     SELECT b.bericht_id, b.ticket_id, b.user_id, b.admin_id, 
     b.bericht, b.gemaakt_op, u.naam AS gebruiker_naam
@@ -51,6 +51,11 @@ $messages = $stmt->fetchAll(PDO::FETCH_ASSOC);
 </head>
 <body>
     <div class="container">
+       
+        <div class="d-flex justify-content-start mb-3">
+            <a href="tickets.php" class="btn btn-secondary">Terug naar Tickets</a>
+        </div>
+        
         <h1>Ticket Details</h1>
         <div class="ticket-details">
             <h3>Onderwerp: <?= htmlspecialchars($ticket['onderwerp']) ?></h3>
@@ -69,7 +74,6 @@ $messages = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <?php endforeach; ?>
             </div>
 
-           
             <div class="admin-response-form">
                 <h4>Reageren</h4>
                 <form action="ticketdetails_admin.php?ticket_id=<?= $ticket_id ?>" method="post">
